@@ -9,40 +9,62 @@ const Posts: React.FC = () => {
     const [data, setData] = useState<any[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [source, setsource] = useState()
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const options = {
 
-                    method: 'GET',
+    const myHeaders = new Headers();
+myHeaders.append("Partner-Authorization", "pro_2cIuzukk0tShnaR0KmKewgXyUZv");
+myHeaders.append("Cookie", "__cf_bm=tG7divduN3NlhKglAj4N5ODhHD3d3hZNd2dIomMoR.4-1709806775-1.0.1.1-piAr_ihLhmuC1FpaYwwd5MKVnznVmbYSzHvwVr9IAe0xQhiPp5jD83FA51z4lnEiHCLS.PGF84HyRYnworsHMg; _abck=SK2VQsaOXPM_98ODFOuyh5dQVNXPJa-u2niRSwdiSe0C_lCoYg-6bRGdd1XbhcWLNsBBbHVWA3gPmDbDaBq5ElZDYzx81e-BNQhkB-hp-_ub08VOflhMNA2UJ4uJQV8TVlu249OUExO7GVX_CutZY2JJYEjZCXDAvujj0PheBmnx4hr-feuIUM1rK30DAg0yl1WQfagl_aM90R23gY3aeyfUmRsWMFshGM318dJq16vgCxlP6r8WMMt8PVVOT3IMUKtosdmGn9sWXtOeHqkn_ZTzZ05UZ3y_HGhUOau5QvjvZbm47_zo9URj8zZCJOaYO-EB62D1Bwu-8W9UiZXEbpEDJgz2M0WcG0uULqlVAbo");
 
-                    headers: {
-                        accept: 'application/json',
-                        'Partner-Authorization': 'pro_2cIuzukk0tShnaR0KmKewgXyUZv'
-                    }
-                };
+const raw = "";
 
-                const response = await fetch('Access-Control-Allow-Origin:https://seats.aero/partnerapi/search?origin_airport=LHR&destination_airport=NYC&take=500', options);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
 
-                const responseData: any = await response.json();
-                setData(responseData.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                // setError('Failed to fetch data. Please try again later.');
-            }
-        };
+fetch("https://seats.aero/partnerapi/search?origin_airport=LHR&destination_airport=EWR&take=500", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 
-        fetchData();
-    }, []);
 
-    if (error) {
-        return <div>{error}</div>;
-    }
 
-    console.log(data);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const options = {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     accept: 'application/json',
+    //                     'Partner-Authorization': 'pro_2cIuzukk0tShnaR0KmKewgXyUZv'
+    //                 }
+    //             };
+    //             const url = 'https://seats.aero/partnerapi/search?origin_airport=LHR&destination_airport=NYC&take=500';
+
+    //             const response = await fetch(url, options);
+
+    //           if (!response.ok) {
+    //                 throw new Error('Network response was not ok');
+    //             }
+
+    //             const responseData: any = await response.json();
+    //             setData(responseData.data);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //             // setError('Failed to fetch data. Please try again later.');
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+
+    // if (error) {
+    //     return <div>{error}</div>;
+    // }
+
+    // console.log(data);
 
     return (
         <section className="px-4 container mx-auto py-16">
@@ -55,13 +77,13 @@ const Posts: React.FC = () => {
                         variant={false}
                         showSearch
                         className=' w-full py-1 bg-white rounded-md border-[1px] border-slate-400 text-black' onChange={(value) => { setsource(value) }}>
-                        {data.map((item: any, index: number) => (
+                        {/* {data?.map((item: any, index: number) => (
                             <div >
                                 <Option key={index} value={item.source}>
                                     {item.source}
                                 </Option>
                             </div>
-                        ))}
+                        ))} */}
                     </Select>
                 </label>
                 <label className="text-sm font-normal">
@@ -72,13 +94,13 @@ const Posts: React.FC = () => {
                         variant={false}
                         showSearch
                         className='  w-full py-1 bg-white rounded-md border-[1px] border-slate-400 text-black' onChange={(value) => { setsource(value) }}>
-                        {data.map((item: any, index: number) => (
+                        {/* {data.map((item: any, index: number) => (
                             <div >
                                 <Option key={index} value={item.source}>
                                     {item.source}
                                 </Option>
                             </div>
-                        ))}
+                        ))} */}
                     </Select>
                 </label>
                 <div className="block">
