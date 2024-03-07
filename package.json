@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
- 
   },
   "dependencies": {
+    "antd": "^5.15.1",
     "cors": "^2.8.5",
     "next": "14.1.2",
     "react": "^18",
