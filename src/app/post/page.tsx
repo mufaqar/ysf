@@ -44,7 +44,7 @@ const Posts: React.FC = () => {
     return (
         <section className="px-4 container mx-auto py-16">
             <div className="md:grid md:grid-cols-4 gap-4 justify-center border rounded-md py-8 px-16">
-                <label>Origin Airports
+                <label className="text-sm font-normal">Origin Airports
                     <Select
                         mode="multiple"
                         variant={false}
@@ -59,7 +59,7 @@ const Posts: React.FC = () => {
                         ))}
                     </Select>
                 </label>
-                <label>Origin Airports
+                <label className="text-sm font-normal">Destination Airports
                     <Select
                         mode="multiple"
                         variant={false}
@@ -74,7 +74,7 @@ const Posts: React.FC = () => {
                         ))}
                     </Select>
                 </label>
-                <label>Origin Airports
+                <label className="text-sm font-normal">Departure Date
                     <Select
                         mode="multiple"
                         variant={false}
@@ -89,7 +89,7 @@ const Posts: React.FC = () => {
                         ))}
                     </Select>
                 </label>
-                <label>Origin Airports
+                <label className="text-sm font-normal">Origin Airports
                     <Select
                         mode="multiple"
                         variant={false}
