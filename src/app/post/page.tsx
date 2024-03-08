@@ -52,9 +52,9 @@ const Posts: React.FC = () => {
                         <Link className="pl-2 text-[#0d6efd]  text-2xl " href={'/'}><TbArrowsLeftRight /></Link></span>
                     <Select
                         mode="multiple"
-                        variant={false}
+                  
                         showSearch
-                        className=' w-full py-1 bg-white rounded-md border-[1px] border-slate-400 text-black' onChange={(value) => { setsource(value) }}>
+                        className=' w-full -10 bg-white rounded-md  text-black' onChange={(value) => { setsource(value) }}>
                         {data.map((item: any, index: number) => (
                             <div >
                                 <Option key={index} value={item.source}>
@@ -69,9 +69,9 @@ const Posts: React.FC = () => {
                         <Link className="pl-2 text-[#0d6efd]  text-2xl " href={'/'}><TbArrowsLeftRight /></Link></span>
                     <Select
                         mode="multiple"
-                        variant={false}
+                      
                         showSearch
-                        className='  w-full py-1 bg-white rounded-md border-[1px] border-slate-400 text-black' onChange={(value) => { setsource(value) }}>
+                        className='  w-full -10 bg-white rounded-md  text-black' onChange={(value) => { setsource(value) }}>
                         {data.map((item: any, index: number) => (
                             <div >
                                 <Option key={index} value={item.source}>

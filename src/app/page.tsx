@@ -32,7 +32,7 @@ async function  Blog() {
       {/* <ul>
         {blogs?.data.map((item:any, idx:number) => (
           <li key={idx}>
-            <p>ONe : {item.YAirlines}</p>
+            <p> {item.source}</p>
            
           </li>
         ))}
