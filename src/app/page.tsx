@@ -120,7 +120,7 @@ function Blog() {
           >
             <option value="">Select Origin</option>
             {blogs.map((blog, idx) => (
-              <option key={idx} value={blog.Route.OriginAirport}>
+              <option key={idx} >
                 {blog.Route.OriginAirport}
               </option>
             ))}
@@ -133,7 +133,7 @@ function Blog() {
           >
             <option value="">Select Destination</option>
             {blogs.map((blog, idx) => (
-              <option key={idx} value={blog.Route.DestinationAirport}>
+              <option key={idx}>
                 {blog.Route.DestinationAirport}
               </option>
             ))}
