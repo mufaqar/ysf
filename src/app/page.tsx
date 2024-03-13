@@ -13,19 +13,27 @@ async function getData() {
         throw new Error('Failed to fetch data');
     }
     const AiroResponce = await res.json();
-    const origins = AiroResponce.data.map((item: any) => item.Route.OriginAirport)
-    const destination = AiroResponce.data.map((item: any) => item.Route.DestinationAirport)
+    const originsSet = new Set<string>(AiroResponce.data.map((item: any) => item.Route.OriginAirport));
+    const destinationsSet = new Set<string>(AiroResponce.data.map((item: any) => item.Route.DestinationAirport));
+
+    const origins: string[] = [];
+    const destinations: string[] = [];
+
+    originsSet.forEach((origin: string) => origins.push(origin));
+    destinationsSet.forEach((destination: string) => destinations.push(destination));
+
     return {
-      origins, destination
+      origins,
+      destinations
     };
 }
 
 const BlogPage = async () => {
-    const { origins, destination } = await getData()
+    const { origins, destinations } = await getData()
 
     return (
         <>
-          <Filters origins={origins} destination={destination}/>
+          <Filters origins={origins} destination={destinations}/>
         </>
     )
 }

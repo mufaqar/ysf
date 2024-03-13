@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from "react";
+import moment from 'moment';
 import { Select, DatePicker } from 'antd';
 import { TbArrowsLeftRight } from "react-icons/tb";
 import Link from "next/link";
@@ -7,20 +8,19 @@ import ShowingFilghtsResults from "../showingFilghtsResults";
 const { Option } = Select;
 
 const Filters: React.FC<any> = ({ origins, destination }) => {
-
     const [DestinationAirport, setDestinationAirport] = useState('');
     const [OriginAirport, setOriginAirport] = useState('');
     const [searchResult, setSearchResult] = useState<any[]>([]);
     console.log("🚀 ~ searchResult:", searchResult)
     let data: any = []
-
     const handleSearch = async () => {
         try {
             const res = await fetch('../../api/filter', {
                 method: 'POST',
                 body: JSON.stringify({
                     OriginAirport,
-                    DestinationAirport
+                    DestinationAirport,
+                   
                 })
             })
             const searchResult = await res.json()
@@ -30,10 +30,6 @@ const Filters: React.FC<any> = ({ origins, destination }) => {
 
         }
     }
-
-
-
-
 
     return (
         <section className="px-4 container mx-auto py-16">
@@ -80,7 +76,7 @@ const Filters: React.FC<any> = ({ origins, destination }) => {
                 <div className="block">
                     <label className="text-sm font-normal block ">Departure Date</label>
                     <div className="">
-                        <DatePicker className="py-[8px] w-full" />
+                        <DatePicker defaultValue={moment()} className="py-[8px] w-full" />
                     </div>
                 </div>
                 <div>
