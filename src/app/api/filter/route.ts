@@ -12,6 +12,5 @@ export async function POST(req: Request) {
        },
      })
      const {data} = await resp.json()
-    
      return Response.json(data)
    }

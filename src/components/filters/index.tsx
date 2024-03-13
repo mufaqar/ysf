@@ -6,7 +6,7 @@ import Link from "next/link";
 import ShowingFilghtsResults from "../showingFilghtsResults";
 const { Option } = Select;
 
-const Filters: React.FC = ({ origins, destination }: any) => {
+const Filters: React.FC<any> = ({ origins, destination }) => {
 
     const [DestinationAirport, setDestinationAirport] = useState('');
     const [OriginAirport, setOriginAirport] = useState('');
