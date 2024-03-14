@@ -1,7 +1,6 @@
 
 import Filters from '@/components/filters';
 import React from 'react';
-
 async function getData() {
     const res = await fetch('https://seats.aero/partnerapi/availability?take=500', {
         method: 'GET',
@@ -23,19 +22,17 @@ async function getData() {
     destinationsSet.forEach((destination: string) => destinations.push(destination));
 
     return {
-      origins,
-      destinations
+        origins,
+        destinations
     };
 }
-
 const BlogPage = async () => {
     const { origins, destinations } = await getData()
 
     return (
         <>
-          <Filters origins={origins} destination={destinations}/>
+            <Filters origins={origins} destination={destinations} />
         </>
     )
 }
-
 export default BlogPage;

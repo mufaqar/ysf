@@ -1,6 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-const ShowingFilghtsResults = ({ searchResult   }: any) => {
+const ShowingFilghtsResults = ({ searchResult, Bussiness, Economy, Premium }: any) => {
+     const filteredResults = searchResult.filter((item: any) => {
+          if (Bussiness && item.JMileageCost !== "0") return true;
+          if (Economy && item.YMileageCost !== "0") return true;
+          if (Premium && item.WDirectMileageCost && item.WDirectMileageCost !== "0") return true;
+          return false;
+     });
      
      return (
           <>
@@ -13,7 +19,6 @@ const ShowingFilghtsResults = ({ searchResult   }: any) => {
                               <tr>
                                    <th className="border border-gray-400 px-4 py-2">Depart</th>
                                    <th className="border border-gray-400 px-4 py-2">Arrive</th>
-                              
                                    <th className="border border-gray-400 px-4 py-2">Source</th>
                                    <th className="border border-gray-400 px-4 py-2">Bussiness</th>
                                    <th className="border border-gray-400 px-4 py-2">Economy</th>
@@ -23,7 +28,7 @@ const ShowingFilghtsResults = ({ searchResult   }: any) => {
                               </tr>
                          </thead>
                          <tbody>
-                              {searchResult.map((item: any, index: number) => (
+                              {filteredResults.map((item: any, index: number) => (
                                    <tr key={index}>
                                         <td className="border border-gray-400 px-4 py-2">{item.Route.OriginAirport}</td>
                                         <td className="border border-gray-400 px-4 py-2">{item.Route.DestinationAirport}</td>
@@ -43,4 +48,4 @@ const ShowingFilghtsResults = ({ searchResult   }: any) => {
      )
 }
 
-export default ShowingFilghtsResults
+export default ShowingFilghtsResults;
