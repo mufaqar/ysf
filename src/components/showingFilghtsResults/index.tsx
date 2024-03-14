@@ -1,7 +1,7 @@
 import React from 'react'
 
-const ShowingFilghtsResults = ({ searchResult   }: any) => {
-     
+const ShowingFilghtsResults = ({ searchResult }: any) => {
+
      return (
           <>
                {/* Show Search Results */}
@@ -13,7 +13,7 @@ const ShowingFilghtsResults = ({ searchResult   }: any) => {
                               <tr>
                                    <th className="border border-gray-400 px-4 py-2">Depart</th>
                                    <th className="border border-gray-400 px-4 py-2">Arrive</th>
-                              
+
                                    <th className="border border-gray-400 px-4 py-2">Source</th>
                                    <th className="border border-gray-400 px-4 py-2">Bussiness</th>
                                    <th className="border border-gray-400 px-4 py-2">Economy</th>
@@ -28,9 +28,9 @@ const ShowingFilghtsResults = ({ searchResult   }: any) => {
                                         <td className="border border-gray-400 px-4 py-2">{item.Route.OriginAirport}</td>
                                         <td className="border border-gray-400 px-4 py-2">{item.Route.DestinationAirport}</td>
                                         <td className="border border-gray-400 px-4 py-2">{item.Route.Source}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{item.JMileageCost !== "0" ? item.JMileageCost  : 'Not Available'}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{item.JMileageCost !== "0" ? item.JMileageCost : 'Not Available'}</td>
                                         <td className="border border-gray-400 px-4 py-2">{item.YMileageCost !== "0" ? item.YMileageCost : 'Not Available'}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{ item.WDirectMileageCost &&  item.WDirectMileageCost !== "0" ? item.WDirectMileageCost :'Not Available'}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{item.WDirectMileageCost && item.WDirectMileageCost !== "0" ? item.WDirectMileageCost : 'Not Available'}</td>
                                         <td className="border border-gray-400 px-4 py-2">{item.FMileageCost !== "0" ? item.FMileageCost : 'Not Available'}</td>
                                         <td className="border border-gray-400 px-4 py-2">{item.Date}</td>
                                    </tr>
