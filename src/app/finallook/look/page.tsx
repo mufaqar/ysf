@@ -5,16 +5,14 @@ import { Select, DatePicker } from 'antd';
 import Link from "next/link";
 import { TbArrowsLeftRight } from "react-icons/tb";
 import FinalFlightsresponse from '../../../components/finalshowingflights';
-
 const { Option } = Select;
-
 const Filters: React.FC<any> = ({ origins, destinations ,sources}) => {
+    const Sources=['united','aeroplane','lifemiles','eurobonus']
     const [DestinationAirport, setDestinationAirport] = useState('');
     const [OriginAirport, setOriginAirport] = useState('');
     const [selectedDate, setSelectedDate] = useState(moment());
     const [searchResult, setSearchResult] = useState<any[]>([]);
     const [Source, setSources] = useState('');
-
     const handleSearch = async () => {
         try {
             const res = await fetch('../../api/finallook', {
@@ -22,7 +20,7 @@ const Filters: React.FC<any> = ({ origins, destinations ,sources}) => {
                 body: JSON.stringify({
                     OriginAirport,
                     DestinationAirport,
-                 Source
+                    Source
                 })
             });
 
@@ -32,9 +30,8 @@ const Filters: React.FC<any> = ({ origins, destinations ,sources}) => {
             console.log("Error:", error);
         }
     };
-
-  
-
+ 
+    
     return (
         <section className="px-4 container mx-auto py-16">
             <div className="md:grid md:grid-cols-4 gap-4 justify-center items-center border rounded-md py-8 px-16">
@@ -79,15 +76,15 @@ const Filters: React.FC<any> = ({ origins, destinations ,sources}) => {
                 {/* Departure Date */}
                 <div className="block">
               
-                    {/* <label className="text-sm font-normal">
+                    <label className="text-sm font-normal">
                     <span className="flex items-center ">FrequentFlyer Program
                         <Link className="pl-2 text-[#0d6efd]  text-2xl " href={'/'}><TbArrowsLeftRight /></Link></span>
-                    {sources && (
+                    {Sources && (
                         <Select
                             mode="multiple"
                             onChange={(value) => { setSources(value) }}
                             className='  w-full -10 bg-white rounded-md  text-black' >
-                            {sources?.map((item: any, index: number) => {
+                            {Sources?.map((item: any, index: number) => {
                                 return (
                                     <Select.Option key={index} value={item}>
                                         {item}
@@ -96,7 +93,7 @@ const Filters: React.FC<any> = ({ origins, destinations ,sources}) => {
                             })}
                         </Select>
                     )}
-                </label> */}
+                </label>
                 </div>
                 <div className="items-center mt-4">
                         <button onClick={handleSearch} className="bg-blue-400 text-white py-2 px-3 rounded-md hover:bg-blue-800">Search</button>
