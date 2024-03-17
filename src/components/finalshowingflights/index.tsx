@@ -1,44 +1,49 @@
 import React from 'react';
 
 const FinalFlightsresponse = ({ searchResult }: any) => {
-    // Group flights by month
-    const groupedFlights: { [key: string]: any[] } = {};
+    // Extract OriginAirport and DestinationAirport
+    const originAirport = searchResult.length > 0 ? searchResult[0].Route.OriginAirport : '';
+    const destinationAirport = searchResult.length > 0 ? searchResult[0].Route.DestinationAirport : '';
+    const source = searchResult.length > 0 ? searchResult[0].Route.Source : '';
+    const distance = searchResult.length > 0 ? searchResult[0].Route.Distance : '';
+    // Group flights by month and date and aggregate remaining seats
+    const groupedMonths: { [key: string]: { [key: string]: number } } = {};
     searchResult.forEach((item: any) => {
-        const month = item.Date.split('-')[1]; // Extract month from the date
-        if (!groupedFlights[month]) {
-            groupedFlights[month] = [];
+        const date = new Date(item.Date);
+        const month = date.toLocaleString('en-US', { month: 'short' });
+        const day = date.getDate().toString();
+
+        if (!groupedMonths[month]) {
+            groupedMonths[month] = {};
         }
-        groupedFlights[month].push(item);
+        groupedMonths[month][day] = (groupedMonths[month][day] || 0) + item.YRemainingSeats;
     });
 
     return (
         <>
             <div className="mt-8 text-center">
                 <h2 className="text-lg font-semibold mb-2">Search Results</h2>
-                {Object.keys(groupedFlights).map((month: string, index: number) => (
-                    <div key={index}>
-                        <h3 className="text-md font-semibold my-2">{month}</h3>
-                        <div className="flex flex-wrap">
-                            {groupedFlights[month].map((flight: any, flightIndex: number) => (
-                                <div key={flightIndex} className="border border-gray-200 rounded-md shadow-md my-2 mx-2 px-4 py-2">
-                                    <div className="">
-                                        <div className='flex space-x-4'>
-                                        <div>{flight.Route.OriginAirport}</div>
-                                        <div>{flight.Route.DestinationAirport}</div>
-                                        </div>
-                                        <div className='flex space-x-4'>
-                                        <div>{flight.Route.Distance}</div>
-                                        <div>{flight.Route.Source}</div>
-                                        </div>
-                                       
-                                        <div>Apr({flight.YRemainingSeats})</div>
-                                     
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                <div className='max-w-[700px]'>
+                <div className='flex space-x-4'>
+                        <div className="text-md font-semibold py-4 "> {distance} | {source}</div>
                     </div>
-                ))}
+                    <div className='flex space-x-4'>
+                        <div className="text-md font-semibold py-4 "> {originAirport} - {destinationAirport}</div>
+                    </div>
+                    {Object.keys(groupedMonths).map((month: string, index: number) => (
+                        <div key={index} className='flex  space-x-4'>
+                            <h3 className="text-md font-semibold py-4">{month}</h3>
+                            <div className='py-4 leading-[30px] '>
+                                {Object.keys(groupedMonths[month]).map((day: string, dayIndex: number) => (
+                                    <span key={dayIndex} className='px-[4px]'>
+                                        {day} ({groupedMonths[month][day]})
+                                        {dayIndex < Object.keys(groupedMonths[month]).length - 1 &&  '|'   }
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     );
