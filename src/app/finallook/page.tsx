@@ -15,10 +15,10 @@ async function getData() {
         throw new Error('Failed to fetch data');
     }
     const AiroResponce = await res.json();
-    const Sources=['united','aeroplane','lifemiles','eurobonus']
+ 
     const originsSet = new Set<string>(AiroResponce.data.map((item: any) => item.Route.OriginAirport));
     const destinationsSet = new Set<string>(AiroResponce.data.map((item: any) => item.Route.DestinationAirport));
-    const sources: string[] = [];
+
     const origins: string[] = [];
     const destinations: string[] = [];
     originsSet.forEach((origin: string) => origins.push(origin));
