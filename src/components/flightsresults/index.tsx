@@ -170,7 +170,7 @@ const FinalFlightsresponse = ({ searchResult }: any) => {
                     <div className='max-w-[300px] bg-[#dcfce7] p-4 rounded-md'>
 
                         <div className=''>
-                            <div className='flex space-x-2'><span className='font-bold text-red-500'>Economy Premium</span>
+                            <div className='flex space-x-2'><span className='font-bold text-red-500'>First</span>
                                 <p className='font-bold text-teal-500'>   {fAirlines}</p>
 
                             </div>
