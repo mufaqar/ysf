@@ -24,7 +24,7 @@ const FinalFlightsresponse = ({ searchResult }: any) => {
             <div className="mt-8 text-center">
                 <h2 className="text-lg font-semibold mb-2">Search Results</h2>
                 <div className='max-w-[700px]'>
-                <div className='flex space-x-4'>
+                    <div className='flex space-x-4'>
                         <div className="text-md font-semibold py-4 "> {distance} | {source}</div>
                     </div>
                     <div className='flex space-x-4'>
@@ -37,7 +37,7 @@ const FinalFlightsresponse = ({ searchResult }: any) => {
                                 {Object.keys(groupedMonths[month]).map((day: string, dayIndex: number) => (
                                     <span key={dayIndex} className='px-[4px]'>
                                         {day} ({groupedMonths[month][day]})
-                                        {dayIndex < Object.keys(groupedMonths[month]).length - 1 &&  '|'   }
+                                        {dayIndex < Object.keys(groupedMonths[month]).length - 1 && '|'}
                                     </span>
                                 ))}
                             </div>
