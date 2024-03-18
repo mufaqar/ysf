@@ -62,7 +62,7 @@ const FinalFlightsresponse = ({ searchResult }: any) => {
         <>
             <div className="mt-8 text-center">
                 <h2 className="text-lg font-semibold mb-2">Search Results</h2>
-                <div className='flex space-x-4'>
+                <div className='md:grid grid-cols-4 gap-4'>
                     <div className='max-w-[300px] bg-[#e2e8f0] p-4 rounded-md'>
 
                         <div className=''>
