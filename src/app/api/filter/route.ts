@@ -22,10 +22,7 @@ export async function POST(req: Request) {
     },
   });
   let { data } = await resp.json();
-  if (Source.length > 0) {
-    const modifiedWithSource = data.filter((item: any) => item.Route.Source === Source[0])
-    return Response.json(modifiedWithSource);
-  } else {
+ 
     return Response.json(data);
-  }
+
 }
