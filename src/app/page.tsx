@@ -1,4 +1,4 @@
-import Filters from './filters/page';
+import Filters from '../app/filters/page';
 import React from 'react';
 
 async function getData() {
