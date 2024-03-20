@@ -15,10 +15,10 @@ export async function POST(req: Request) {
   const startDate = currentDate.toISOString().split('T')[0];
   const endDate = nextYearDate.toISOString().split('T')[0];
 
-  let resp = await fetch(`https://seats.aero/partnerapi/search?origin_airport=${OriginAirport}&destination_airport=${DestinationAirport}&start_date=${startDate}&end_date=${endDate}&take=5000`, {
+  let resp = await fetch(`https://seats.aero/partnerapi/search?origin_airport=${OriginAirport}&destination_airport=${DestinationAirport}&start_date=${startDate}&end_date=${endDate}&take=500`, {
     headers: {
       'Partner-Authorization': 'pro_2cIuzukk0tShnaR0KmKewgXyUZv',
-      "Content-Type": "application/json",
+      accept: 'application/json',
     },
   });
   let { data } = await resp.json();

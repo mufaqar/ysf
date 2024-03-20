@@ -3,7 +3,7 @@ import React from 'react';
 
 async function getData() {
     try {
-        const res = await fetch('https://seats.aero/partnerapi/availability?take=5000', {
+        const res = await fetch('https://seats.aero/partnerapi/availability?take=500', {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -33,12 +33,12 @@ async function getData() {
         };
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error; // re-throw the error to propagate it up
+        throw error; 
     }
 }
 
 const BlogPage = async () => {
-    const { origins, destinations } = await getData();
+    const { origins, destinations, AiroResponse } = await getData();
 
     return (
         <>

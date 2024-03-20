@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Select } from 'antd';
 import Link from "next/link";
 import { TbArrowsLeftRight } from "react-icons/tb";
-import FinalFlightsresponse from '@/components/flightsresults';
+import FinalFlightsresponse from '@/components/flightsresults'
 const { Option } = Select;
 
 interface Flight {
@@ -32,11 +32,9 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
             const searchResult = await res.json();
             
             // Filter the search result based on selected sources
-            const filteredResult = selectedSources.length > 0 ?
-                searchResult.filter((item: any) => selectedSources.includes(item.Route.Source)) :
-                searchResult;
+           
     
-            setSearchResult(filteredResult);
+            setSearchResult(searchResult);
         } catch (error) {
             console.log("Error:", error);
         }
@@ -44,6 +42,7 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
     
     
     const handleSources = async (value: any) => {
+        // Set state based on the type of value received
         if (value.type === 'origin') {
             setOriginAirport(value.value);
         } else if (value.type === 'destination') {
@@ -68,6 +67,9 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
             console.log("Error:", error);
         }
     };
+    
+    // Render code...
+    
     
     
     return (

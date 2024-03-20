@@ -1,10 +1,10 @@
 import React from 'react';
 
 const FinalFlightsresponse = ({ searchResult }: any) => {
-    // Extract OriginAirport and DestinationAirport
-    const originAirport = searchResult.length > 0 ? searchResult[0].Route.OriginAirport : '';
-    const destinationAirport = searchResult.length > 0 ? searchResult[0].Route.DestinationAirport : '';
-    const source = searchResult.length > 0 ? searchResult.Route.Source : '';
+
+    const originAirport = searchResult.length > 0 ? searchResult.Route.OriginAirport : '';
+    const destinationAirport = searchResult.length > 0 ? searchResult.Route.DestinationAirport : '';
+    const source = searchResult.length > 0 ? searchResult[0]?.Source : '';
     const distance = searchResult.length > 0 ? searchResult[0].Route.Distance : '';
     const yairlines = searchResult.length > 0 ? searchResult[0].YAirlines : '';
     const jAirlines = searchResult.length > 0 ? searchResult[0].JAirlines : '';
@@ -208,3 +208,4 @@ const FinalFlightsresponse = ({ searchResult }: any) => {
 };
 
 export default FinalFlightsresponse;
+
