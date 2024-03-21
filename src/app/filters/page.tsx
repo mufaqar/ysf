@@ -7,11 +7,7 @@ import { TbArrowsLeftRight } from "react-icons/tb";
 import FinalFlightsresponse from '@/components/flightsresults'
 const { Option } = Select;
 
-interface Flight {
-    Route: {
-        Source: string;
-    };
-}
+
 const Filters: React.FC<any> = ({ origins, destinations }) => {
     const [destinationAirport, setDestinationAirport] = useState('');
     const [originAirport, setOriginAirport] = useState('');
