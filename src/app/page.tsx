@@ -1,4 +1,5 @@
-import Filters from '../app/filters/page';
+
+import Filters from './filters/page';
 import React from 'react';
 
 async function getData() {
@@ -33,12 +34,12 @@ async function getData() {
         };
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error; // re-throw the error to propagate it up
+        throw error; 
     }
 }
 
 const BlogPage = async () => {
-    const { origins, destinations } = await getData();
+    const { origins, destinations, AiroResponse } = await getData();
 
     return (
         <>
