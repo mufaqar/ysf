@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSource }) => {
-    if (!searchResult || searchResult.length === 0 || !searchResult[0].Route) {
-        return null;
-    }
+    
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -87,6 +85,10 @@ export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSour
         }
         pmonth[month][day] = (pmonth[month][day] || 0) + item.WRemainingSeats;
     });
+
+    if (!searchResult || searchResult.length === 0 || !searchResult[0].Route) {
+        return null;
+    }
 
     return (
         <section>
