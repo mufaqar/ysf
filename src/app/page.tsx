@@ -3,7 +3,7 @@ import React from 'react';
 
 async function getData() {
     try {
-        const res = await fetch('https://seats.aero/partnerapi/availability?take=500', {
+        const res = await fetch('https://seats.aero/partnerapi/availability?take=5000', {
             method: 'GET',
             headers: {
                 accept: 'application/json',
