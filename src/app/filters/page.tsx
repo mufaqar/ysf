@@ -1,12 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
 import { Select } from 'antd';
 import Link from "next/link";
 import { TbArrowsLeftRight } from "react-icons/tb";
 import {FinalFlightsresponse} from '@/components/flightsresults'
 const { Option } = Select;
-
 
 const Filters: React.FC<any> = ({ origins, destinations }) => {
     const [destinationAirport, setDestinationAirport] = useState('');
