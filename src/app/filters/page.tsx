@@ -4,16 +4,16 @@ import moment from 'moment';
 import { Select } from 'antd';
 import Link from "next/link";
 import { TbArrowsLeftRight } from "react-icons/tb";
-import FinalFlightsresponse from '@/components/flightsresults'
+import {FinalFlightsresponse} from '@/components/flightsresults'
 const { Option } = Select;
 
 
 const Filters: React.FC<any> = ({ origins, destinations }) => {
     const [destinationAirport, setDestinationAirport] = useState('');
     const [originAirport, setOriginAirport] = useState('');
-    const [selectedDate, setSelectedDate] = useState(moment());
+    const [selectedSource, setSelectedSource] = useState<string>('');
     const [searchResult, setSearchResult] = useState<any[]>([]);
-    const [selectedSources, setSelectedSources] = useState<string[]>([]);
+    const [selectedSources, setSelectedSources] = useState<string[]>();
     const [sources, setSources] = useState<string[]>([]); // State to hold sources
     const handleSearch = async () => {
         try {
@@ -22,30 +22,25 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
                 body: JSON.stringify({
                     OriginAirport: originAirport,
                     DestinationAirport: destinationAirport,
-                    Source: selectedSources
+                   
                 })
             });
             const searchResult = await res.json();
-            
-            // Filter the search result based on selected sources
-           
-    
             setSearchResult(searchResult);
         } catch (error) {
             console.log("Error:", error);
         }
     };
-    
-    
-    const handleSources = async (value: any) => {
-        // Set state based on the type of value received
-        if (value.type === 'origin') {
-            setOriginAirport(value.value);
-        } else if (value.type === 'destination') {
-            setDestinationAirport(value.value);
-        } else if (value.type === 'source') {
-            setSelectedSources(value.value);
-        }
+
+  
+const handleSources = async (value: any) => {
+    if (value.type === 'origin') {
+        setOriginAirport(value.value);
+    } else if (value.type === 'destination') {
+        setDestinationAirport(value.value);
+    } else if (value.type === 'source') {
+        setSelectedSource(value.value); // Update selected source
+}
     
         try {
             const res = await fetch('../../api/filter', {
@@ -54,7 +49,10 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
                     OriginAirport: value.type === 'origin' ? value.value : originAirport,
                     DestinationAirport: value.type === 'destination' ? value.value : destinationAirport,
                     Source: value.type === 'source' ? value.value : selectedSources
-                })
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
     
             const searchResult = await res.json();
@@ -64,7 +62,35 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
         }
     };
     
-    // Render code...
+
+    useEffect(() => {
+        const fetchSources = async () => {
+            try {
+                const res = await fetch('../../api/filter', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        OriginAirport: originAirport,
+                        DestinationAirport: destinationAirport
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await res.json();
+                const allSources = data.reduce((acc:any, flight:any) => {
+                    if (!acc.includes(flight.Route.Source)) {
+                        acc.push(flight.Route.Source);
+                    }
+                    return acc;
+                }, []);
+                setSources(allSources);
+            } catch (error) {
+                console.error('Error fetching sources:', error);
+            }
+        };
+    
+        fetchSources();
+    }, [originAirport, destinationAirport]);
     
     
     
@@ -119,7 +145,8 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
                     <label className="text-sm font-normal">
                         <span className="flex items-center ">FrequentFlyer Program
                             <Link className="pl-2 text-[#0d6efd]  text-2xl " href={'/'}><TbArrowsLeftRight /></Link></span>
-                        <Select
+
+                      {sources && (   <Select
                             mode="multiple"
                             value={selectedSources}
                             onChange={(value) => {
@@ -138,13 +165,15 @@ const Filters: React.FC<any> = ({ origins, destinations }) => {
                                 )
                             })}
                         </Select>
+                        )}
                     </label>
                 </div>
                 <div className="items-center mt-4">
                     <button onClick={handleSearch} className="bg-blue-400 text-white py-2 px-3 rounded-md hover:bg-blue-800">Search</button>
                 </div>
             </div>
-            <FinalFlightsresponse searchResult={searchResult} />
+            <FinalFlightsresponse searchResult={searchResult} selectedSource={selectedSource} />
+
         </section>
     );
 }
