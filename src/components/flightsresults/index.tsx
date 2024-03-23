@@ -25,18 +25,18 @@ export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSour
 
         );
     }
-    const originAirport = searchResult[0].Route.OriginAirport || '';
-    const destinationAirport = searchResult[0].Route.DestinationAirport || '';
+    const originAirport = searchResult[0]?.Route.OriginAirport || '';
+    const destinationAirport = searchResult[0]?.Route.DestinationAirport || '';
     let source = searchResult[0]?.Source || '';
 
     if (selectedSource) {
         source = selectedSource;
     }
-    const distance = searchResult[0].Route.Distance || '';
-    const yairlines = searchResult[0].YAirlines || '';
-    const jAirlines = searchResult[0].JAirlines || '';
-    const wAirlines = searchResult[0].WAirlines || '';
-    const fAirlines = searchResult[0].FAirlines || '';
+    const distance = searchResult[0]?.Route.Distance || '';
+    const yairlines = searchResult[0]?.YAirlines || '';
+    const jAirlines = searchResult[0]?.JAirlines || '';
+    const wAirlines = searchResult[0]?.WAirlines || '';
+    const fAirlines = searchResult[0]?.FAirlines || '';
 
     const groupedMonths: { [key: string]: { [key: string]: number } } = {};
     searchResult.forEach((item: any) => {
