@@ -111,6 +111,7 @@ export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSour
                             <h3 className="text-md font-semibold py-4 text-left">{month}</h3>
                             <div className='py-4 leading-[30px] '>
                                 {Object.keys(groupedMonths[month]).map((day: string, dayIndex: number) => (
+                                    groupedMonths[month][day] > 0 &&
                                     <span key={dayIndex} className='px-[4px]'>
                                         {day} ({groupedMonths[month][day]})
                                         {dayIndex < Object.keys(groupedMonths[month]).length - 1 && '|'}
@@ -133,10 +134,12 @@ export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSour
                     </div>
 
                     {Object.keys(bmonth).map((month: string, index: number) => (
+                       
                         <div key={index} className=''>
                             <h3 className="text-md font-semibold py-4 text-left">{month}</h3>
                             <div className='py-4 leading-[30px] '>
                                 {Object.keys(bmonth[month]).map((day: string, dayIndex: number) => (
+                                     bmonth[month][day] > 0 &&
                                     <span key={dayIndex} className='px-[4px]'>
                                         {day} ({bmonth[month][day]})
                                         {dayIndex < Object.keys(bmonth[month]).length - 1 && '|'}
@@ -159,10 +162,12 @@ export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSour
                     </div>
 
                     {Object.keys(pmonth).map((month: string, index: number) => (
+                         
                         <div key={index} className=''>
                             <h3 className="text-md font-semibold py-4 text-left">{month}</h3>
                             <div className='py-4 leading-[30px] '>
                                 {Object.keys(pmonth[month]).map((day: string, dayIndex: number) => (
+                                    pmonth[month][day] > 0 &&
                                     <span key={dayIndex} className='px-[4px]'>
                                         {day} ({pmonth[month][day]})
                                         {dayIndex < Object.keys(pmonth[month]).length - 1 && '|'}
@@ -185,10 +190,12 @@ export const FinalFlightsresponse: React.FC<any> = ({ searchResult, selectedSour
                     </div>
 
                     {Object.keys(fmonth).map((month: string, index: number) => (
+                         
                         <div key={index} className=''>
                             <h3 className="text-md font-semibold py-4 text-left">{month}</h3>
                             <div className='py-4 leading-[30px] '>
                                 {Object.keys(fmonth[month]).map((day: string, dayIndex: number) => (
+                                    fmonth[month][day] > 0 &&
                                     <span key={dayIndex} className='px-[4px]'>
                                         {day} ({fmonth[month][day]})
                                         {dayIndex < Object.keys(fmonth[month]).length - 1 && '|'}
